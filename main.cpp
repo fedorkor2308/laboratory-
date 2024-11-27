@@ -1,11 +1,11 @@
 #include <iostream>
 #include <limits>
 #include <cmath>
-
+//code
 using namespace std;
 double getValidInput(const string &prompt) {
     double value;
-    while (true) {
+    while (true) { 
         cout << prompt;
         cin >> value;
 
