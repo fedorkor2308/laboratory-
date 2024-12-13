@@ -2,7 +2,7 @@
 #include <limits>
 #include <cmath>
 
-using namespace std; // abc
+using namespace std; 
 
 double getValidInput(const string &prompt) {
     double value;
