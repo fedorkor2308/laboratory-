@@ -1,44 +1,56 @@
 #include <iostream>
 #include <limits>
 #include <cmath>
-//code
+
 using namespace std;
+
 double getValidInput(const string &prompt) {
     double value;
-    while (true) { 
+    while (true) {
         cout << prompt;
         cin >> value;
 
         if (cin.fail()) {
-            cin.clear(); 
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-            cout << "Invalid input. Input a number" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Input a number." << endl;
         } else {
             return value;
         }
     }
 }
+
 void swapIfNeeded(double &a, double &b) {
     if (a > b) {
-        swap(a, b); 
+        swap(a, b);
     }
 }
 
 int main() {
-    double n = getValidInput("Enter n (n > -1): ");
-    while (n <= -1) {
-        cout << "n must be bigger than -1." << endl;
+    double n;
+    while (true) {
         n = getValidInput("Enter n (n > -1): ");
+        if (n > -1) {
+            break;
+        } else {
+            cout << "n must be greater than -1." << endl;
+        }
     }
 
-    double step = getValidInput("Enter step: ");
-    double left = getValidInput("Enter start: ");
-    double right = getValidInput("Enter the end: ");
-    while (step > abs(right - left)) {
-        cout << "Step can't be bigger than length of interval" << endl;
-        step = getValidInput("Enter step: ");
-    }
+    double left = getValidInput("Enter start of range: ");
+    double right = getValidInput("Enter end of range: ");
     swapIfNeeded(left, right);
+
+    double step;
+    while (true) {
+        step = getValidInput("Enter step: ");
+        if (step > 0 && step <= abs(right - left)) {
+            break;
+        } else {
+            cout << "Step must be positive and not greater than the range length." << endl;
+        }
+    }
+
     for (double x = left; x <= right; x += step) {
         double result = 0;
 
