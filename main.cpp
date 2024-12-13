@@ -2,7 +2,7 @@
 #include <limits>
 #include <cmath>
 
-using namespace std;
+using namespace std; // abc
 
 double getValidInput(const string &prompt) {
     double value;
@@ -20,6 +20,18 @@ double getValidInput(const string &prompt) {
     }
 }
 
+int getValidInteger(const string &prompt) {
+    double value;
+    while (true) {
+        value = getValidInput(prompt);
+        if (value == static_cast<int>(value)) {
+            return static_cast<int>(value);
+        } else {
+            cout << "Invalid input. Please input an integer." << endl;
+        }
+    }
+}
+
 void swapIfNeeded(double &a, double &b) {
     if (a > b) {
         swap(a, b);
@@ -27,13 +39,13 @@ void swapIfNeeded(double &a, double &b) {
 }
 
 int main() {
-    double n;
+    int n;
     while (true) {
-        n = getValidInput("Enter n (n > -1): ");
-        if (n > -1) {
+        n = getValidInteger("Enter n (n >= 0): ");
+        if (n >= 0) {
             break;
         } else {
-            cout << "n must be greater than -1." << endl;
+            cout << "n must be greater than or equal to 0." << endl;
         }
     }
 
